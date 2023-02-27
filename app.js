@@ -7,7 +7,14 @@ import cors from 'cors'
 const app=express()
 
 // middlewares
-app.use(cors())
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+  methods: ['GET','PUT','DELETE', 'POST', 'PATCH'],
+  allowedHeaders: 'Content-Type,Authorization'
+}
+app.use(cors(corsOptions))
 app.use(bodyParser.json({limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({limit: '30mb', extended: true }))
 
