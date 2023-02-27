@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({limit: '30mb', extended: true }))
 
 app.get("/", (req, res) => {
    res.send("Route is working! YaY!");
+   res.header('Access-Control-Allow-Origin', '*');
  });
  app.use('/api/products', productRoute)
  app.use('/api/users', userRoute)
