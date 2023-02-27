@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import productRoute from './routes/productRoute.js'
+import productRoute from './routes/productRoute.js';
+import userRoute from './routes/userRoute.js'
 import cors from 'cors'
 
 const app=express()
@@ -14,5 +15,6 @@ app.get("/", (req, res) => {
    res.send("Route is working! YaY!");
  });
  app.use('/api/products', productRoute)
+ app.use('/api/users', userRoute)
  
 export default app
