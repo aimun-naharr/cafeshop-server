@@ -12,9 +12,12 @@ export const createNewProduct = async (req, res) => {
 };
 
 export const getAllProducts = async (req, res) => {
+        const {currentPage, startIndex, limit}=req.query;
+        const total=await ProductModel.countDocuments({})
+
         try {
-                const products = await ProductModel.find();
-                res.status(200).send(products);
+                const products = await ProductModel.find().limit(Number(limit)).skip(Number(startIndex));
+                res.status(200).send({products, currentPage, NumberofPages: Math.ceil(Number(total)/limit)});
         } catch (error) {
                 res.status(500).json({ msg: "Something went wrong" });
         }
